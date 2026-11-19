@@ -1,23 +1,112 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
-<link rel="stylesheet" href="./style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PALM COAST COVER FORGE</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "./src/cover.js": "./src/cover.js",
+      "./src/shots.js": "./src/shots.js"
+    }
+  }
+  </script>
 </head>
 <body>
-<main class="app">
-  <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
-    <p id="status" role="status"></p>
-  </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
-</main>
-<script type="module" src="./src/main.js"></script>
+  <header class="toolbar" role="toolbar" aria-label="Main toolbar">
+    <h1 class="app-title">PALM COAST COVER FORGE</h1>
+    <div class="toolbar-group">
+      <button id="add-photo" class="btn btn-primary" type="button" aria-label="Add photo">+ Add Photo</button>
+      <input type="file" id="photo-input" accept="image/*" hidden>
+    </div>
+    <div class="toolbar-group">
+      <label for="caption-input" class="visually-hidden">Caption text</label>
+      <input id="caption-input" type="text" maxlength="60" placeholder="TYPE YOUR CAPTION" aria-label="Caption text">
+    </div>
+    <div class="toolbar-group">
+      <label for="size-select" class="visually-hidden">Canvas size</label>
+      <select id="size-select" aria-label="Canvas size">
+        <option value="1080x1080">1080 × 1080</option>
+        <option value="1080x1350">1080 × 1350</option>
+        <option value="1920x1080">1920 × 1080</option>
+      </select>
+    </div>
+    <div class="toolbar-group">
+      <button id="export-png" class="btn btn-export" type="button" aria-label="Export as PNG">Export PNG</button>
+    </div>
+  </header>
+
+  <main class="workspace" role="main">
+    <aside class="panel-list" aria-label="Art panels">
+      <h2 class="panel-header">ART PANELS</h2>
+      <div id="panels-container" class="panels-grid" role="list" aria-label="Panel slots"></div>
+    </aside>
+
+    <section class="canvas-zone" aria-label="Canvas preview">
+      <canvas id="preview-canvas" aria-label="Cover preview"></canvas>
+      <div id="canvas-overlay" class="canvas-overlay" hidden aria-hidden="true"></div>
+    </section>
+
+    <aside class="controls-panel" aria-label="Color grade and caption controls">
+      <div class="control-section">
+        <h2 class="section-title">COLOR GRADE</h2>
+        <div class="control-row">
+          <label for="sunset-intensity">Sunset Intensity</label>
+          <input id="sunset-intensity" type="range" min="0" max="100" value="50" aria-label="Sunset intensity">
+          <output id="sunset-intensity-val">50</output>
+        </div>
+        <div class="control-row">
+          <label for="neon-glow">Neon Glow</label>
+          <input id="neon-glow" type="range" min="0" max="100" value="30" aria-label="Neon glow">
+          <output id="neon-glow-val">30</output>
+        </div>
+        <div class="control-row">
+          <label for="vignette">Vignette</label>
+          <input id="vignette" type="range" min="0" max="100" value="40" aria-label="Vignette">
+          <output id="vignette-val">40</output>
+        </div>
+        <div class="control-row">
+          <label for="grain">Grain</label>
+          <input id="grain" type="range" min="0" max="100" value="15" aria-label="Grain">
+          <output id="grain-val">15</output>
+        </div>
+      </div>
+
+      <div class="control-section">
+        <h2 class="section-title">CAPTION STYLE</h2>
+        <div class="control-row">
+          <label for="font-size">Font Size</label>
+          <input id="font-size" type="range" min="8" max="120" value="48" aria-label="Font size">
+          <output id="font-size-val">48</output>
+        </div>
+        <div class="control-row">
+          <label for="letter-spacing">Letter Spacing</label>
+          <input id="letter-spacing" type="range" min="0" max="40" value="8" aria-label="Letter spacing">
+          <output id="letter-spacing-val">8</output>
+        </div>
+        <div class="control-row">
+          <label for="text-color">Text Color</label>
+          <input id="text-color" type="color" value="#ffffff" aria-label="Text color">
+        </div>
+        <div class="control-row">
+          <label for="outline-thickness">Outline Thickness</label>
+          <input id="outline-thickness" type="range" min="0" max="8" value="3" aria-label="Outline thickness">
+          <output id="outline-thickness-val">3</output>
+        </div>
+        <div class="control-row">
+          <label for="caption-align">Alignment</label>
+          <select id="caption-align" aria-label="Caption alignment">
+            <option value="center">Center</option>
+            <option value="left">Left</option>
+            <option value="right">Right</option>
+          </select>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script type="module" src="./src/main.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 [
-  { "name": "1-cover.jpg", "query": "?shot=cover&photo=pier&caption=Sunset%20Heist", "w": 1080, "h": 1080 },
-  { "name": "2-editor.jpg", "query": "?shot=editor&photo=boulevard&caption=Boulevard%20Queen", "w": 1280, "h": 720 },
-  { "name": "3-cover.jpg", "query": "?shot=cover&photo=boulevard&caption=Boulevard%20Queen", "w": 1080, "h": 1080 }
+  { "key": "cover-square", "file": "cover-square.png", "alt": "Square cover render showing sunset gradient backdrop with bold heist caption", "size": "1080x1080" },
+  { "key": "editor-view", "file": "editor-view.png", "alt": "Editor workspace displaying four panel slots alongside color grade and caption controls", "size": "1920x1080" },
+  { "key": "cover-portrait", "file": "cover-portrait.png", "alt": "Portrait orientation cover with neon glow accents and vignette framing", "size": "1080x1350" },
+  { "key": "cover-landscape", "file": "cover-landscape.png", "alt": "Wide landscape cover featuring film grain texture and stylized caption text", "size": "1920x1080" }
 ]
